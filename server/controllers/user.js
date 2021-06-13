@@ -12,45 +12,32 @@ import { User } from "../models/user.js"
 //     }
 // };
 
-export const signIn = async (req,res) => {
+export const signIn = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const oldUser = User.findOne({email});
-
-        if(!oldUser) return res.json("user not registered");
-
+        const oldUser = User.findOne({ email });
+        if (!oldUser) return res.json("user not registered");
         const isPasswords = await bcrypt.compare(password, oldUser.password);
-
-        if(!isPasswords) return res.json("Credentials not match")
-
-        const token = jwt.sign({email: oldUser.email, Id:oldUser._id}, secret, {expires: "1h"});
-
-        res.status(200).json({result: oldUser, token});
-
+        if (!isPasswords) return res.json("Credentials not match")
+        const token = jwt.sign({ email: oldUser.email, Id: oldUser._id }, secret, { expires: "1h" });
+        res.status(200).json({ result: oldUser, token });
     } catch (error) {
-        res.status(500).json({error:error.message, message: "Something went wrong"})
+        res.status(500).json({ error: error.message, message: "Something went wrong" })
     }
 };
 
-export const signUp = async (req,res) => {
+export const signUp = async (req, res) => {
     const { name, email, password, id } = req.body;
-
     try {
-        const oldUser = User.findOne({email});
-
-        if(!oldUser) return res.json("user not registered");
-
+        const oldUser = User.findOne({ email });
+        if (!oldUser) return res.json("user not registered");
         const hasPassword = await bcrypt.hash(password, 12);
-
-        const result = await users.create({email, password: hasPassword, name});
-
-        const token = jwt.sign({email: result.email, Id:result._id}, secret, {expires: "1h"});
-
-        res.status(200).json({result: oldUser, token});
-
+        const result = await users.create({ email, password: hasPassword, name });
+        const token = jwt.sign({ email: result.email, Id: result._id }, secret, { expires: "1h" });
+        res.status(200).json({ result: oldUser, token });
     } catch (error) {
-        res.status(500).json({error:error.message, message: "Something went wrong"})
+        res.status(500).json({ error: error.message, message: "Something went wrong" })
     }
 };
 
