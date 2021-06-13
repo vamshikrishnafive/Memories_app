@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken'
 
 import { User } from "../models/user.js"
 
+const secret = 'test'
+
 // export const getUser = async (req,res) => {
 //     try {
 //         const users = await User.find({});
