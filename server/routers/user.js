@@ -1,10 +1,10 @@
 import express from "express";
-import { signUp, signIn, updateUserDetails, deleteUser} from "../controllers/user";
+import { signUp, signIn } from "../controllers/user";
 
 const routers = express.Router();
 
-router.post('/signin', signIn);
-router.post('/signup', signUp);
+routers.post('/signin', signIn);
+routers.post('/signup', signUp);
 // router.patch('/:id', updateUserDetails);
 // router.delete('/:id', deleteUser);
 
