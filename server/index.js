@@ -23,6 +23,6 @@ const CONNCETION_URL = 'mongodb+srv://Vamshi:pgDelKCMKVr4nnOn@cluster0.iz3zy.mon
 const PORT = process.env.PORT || 5000;
 
 // ✍️ database connection
-mongoose.connect(CONNCETION_URL, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true})
+mongoose.connect(CONNCETION_URL, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false})
     .then(() => app.listen(PORT, () => console.log(`App is running on port http://localhost:${PORT}/app`)))
     .catch(err => console.log(err))
