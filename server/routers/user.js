@@ -1,11 +1,9 @@
 import express from "express";
-import { signUp, signIn } from "../controllers/user";
+const router = express.Router();
 
-const routers = express.Router();
+import { signin, signup } from "../controllers/user.js";
 
-routers.post('/signin', signIn);
-routers.post('/signup', signUp);
-// router.patch('/:id', updateUserDetails);
-// router.delete('/:id', deleteUser);
+router.post("/signin", signin);
+router.post("/signup", signup);
 
-export default routers;
+export default router;
