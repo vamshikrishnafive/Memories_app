@@ -24,20 +24,16 @@ const Post = () => {
         }
     }, [post]);
 
-    if (!post) return null;
-
     const openPost = (_id) => history.push(`/posts/${_id}`);
-
-    if (isLoading) {
-        return (
-            <Paper elevation={6} className={classes.loadingPaper}>
-                <CircularProgress size="7em" />
-            </Paper>
-        );
-    }
-
+    if (!post) return null;
+    // if (isLoading) {
+        //     return (
+            //         <Paper elevation={6} className={classes.loadingPaper}>
+            //             <CircularProgress size="7em" />
+            //         </Paper>
+            //     );
+            // } 
     const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
-
     return (
         <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
             <div className={classes.card}>
